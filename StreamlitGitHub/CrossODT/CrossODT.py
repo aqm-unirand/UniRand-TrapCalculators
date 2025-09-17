@@ -98,7 +98,7 @@ wx,wy,wv = get_cross_freqs(trap_wavelength_input, odt_beam_power_input, odt_beam
 #Calculate Fermi Characteristics Ef (fermi Energy), Tf (Fermi Temperature), vf (Fermi velocity)
 Ef,Tf,vf = get_Fermi_values(trap_wavelength_input, odt_beam_power_input, odt_beam_waist_input,cross_odt_angle_input,atom_number_input)
 
-alpha = getApproxPolarizability(trap_frequency,transition_frequency,transition_linewidth)
+alpha = getApproxPolarizability(trap_frequency,transition_frequency,transition_linewidth)*1e39
 
 on = st.sidebar.toggle("Switch to temperature")
 
