@@ -65,8 +65,8 @@ def get_U0(trap_freq,power, waist):
     alpha=getApproxPolarizability(trap_freq,transition_frequency,transition_linewidth)
     total_power_in_cross = 2*power #Total power in the cross is twice the IPG output power
     trapIntensity=2*total_power_in_cross/(const.pi*(waist**2)) #Max intensity on optical axis is 2 times power/mode area for Gaussian beam
-    Udip=alpha.real #((-1/(2*const.epsilon_0*const.c))*alpha.real*trapIntensity)
-    return Udip*1e39 #Udip #Depth in J
+    Udip=((-1/(2*const.epsilon_0*const.c))*alpha.real*trapIntensity)
+    return Udip #Depth in J
 
 # Calculate Cross ODT trap frequencies (omega_x, omega_y, omega_z)
 def get_cross_freqs(trap_freq,power,waist,cross_angle):
@@ -90,13 +90,13 @@ def get_Fermi_values(trap_freq,power,waist,cross_angle, atom_number):
 
 
 # Calculate and display results
-U0 = get_U0(trap_wavelength_input, odt_beam_power_input, odt_beam_waist_input) # U0 in joules
+U0 = get_U0(trap_frequency, odt_beam_power_input, odt_beam_waist_input) # U0 in joules
 
 # Radial (wx,wy) and axial trap (wv) frequencies
-wx,wy,wv = get_cross_freqs(trap_wavelength_input, odt_beam_power_input, odt_beam_waist_input,cross_odt_angle_input)
+wx,wy,wv = get_cross_freqs(trap_frequency, odt_beam_power_input, odt_beam_waist_input,cross_odt_angle_input)
 
 #Calculate Fermi Characteristics Ef (fermi Energy), Tf (Fermi Temperature), vf (Fermi velocity)
-Ef,Tf,vf = get_Fermi_values(trap_wavelength_input, odt_beam_power_input, odt_beam_waist_input,cross_odt_angle_input,atom_number_input)
+Ef,Tf,vf = get_Fermi_values(trap_frequency, odt_beam_power_input, odt_beam_waist_input,cross_odt_angle_input,atom_number_input)
 
 alpha = getApproxPolarizability(trap_frequency,transition_frequency,transition_linewidth)*1e39
 
@@ -114,7 +114,7 @@ on = st.sidebar.toggle("Switch to temperature")
 data = pd.DataFrame({
     "Parameter": ["Trap depth", "Trap frequency: x", "Trap frequency: y", "Trap frequency: vertical", "Fermi Temperature", "Fermi Velocity"],
     "Symbol": ["U₀", "ω_x / 2π", "ω_y / 2π", "ω_z / 2π", "T_f", "v_F*100"],
-    "Value": [U0 / const.k * 1e6, wx, wy, U0, Tf * 1e6, vf],
+    "Value": [U0 / const.k * 1e6, wx, wy, wv, Tf * 1e6, vf],
     "Units": ["μK", "Hz", "Hz", "Hz", "μK" ,  "cm/s"]
 })
 
