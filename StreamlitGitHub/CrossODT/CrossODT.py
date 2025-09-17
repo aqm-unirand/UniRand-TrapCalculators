@@ -31,7 +31,7 @@ power_slider = st.sidebar.slider('IPG Output Power, mW', min_value=0.1, max_valu
 waist_slider = st.sidebar.slider('Beam Waist, μm', min_value=1.0, max_value=200.0, value=67.0, step=0.5)
 
 # Wavelength
-trap_wavelength_input = st.sidebar.number_input('Wavelength, nm', value=1064)
+trap_wavelength_input = st.sidebar.number_input('Wavelength, nm', value=1070)
 trap_wavelength_input *= 1e-9  # Convert to meters
 trap_frequency=2 * const.pi*wavelength_to_freq(trap_wavelength_input)
 
@@ -45,7 +45,6 @@ odt_beam_waist_input *= 1e-6  # Convert to meters
 
 # Cross angle
 cross_odt_angle_input = st.sidebar.number_input('Cross angle, degrees', value=10)
-# trap_cross_angle_input *=   # Convert
 
 # Atom Number
 atom_number_input = st.sidebar.number_input('Atom Number, N', value=4000)
