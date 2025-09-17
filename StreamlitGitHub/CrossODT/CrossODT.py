@@ -4,13 +4,14 @@ import numpy as np
 import math
 import scipy.constants as const
 from arc import *
-import UnitConversions
+
+
 
 # Constants
 m_li6 = 6.0151228874 * 1.66e-27  # Mass of Lithium-6 in kg
 transition_linewidth = 2 * const.pi*5.8724e6 #Li-6 D2 transition linewidth
 transition_wavelength = 670.977338e-9 #Li-6 transition wavelength in m
-transition_frequency=2 * const.pi*UnitConversions.wavelength_to_freq(transition_wavelength)
+transition_frequency=2 * const.pi*wavelength_to_freq(transition_wavelength)
 
 # Streamlit app
 st.title('UniRand Cross ODT Parameters for Li6')
@@ -24,7 +25,7 @@ waist_slider = st.sidebar.slider('Beam Waist, μm', min_value=1, max_value=200.0
 # Wavelength
 trap_wavelength_input = st.sidebar.number_input('Wavelength, nm', value=1064)
 trap_wavelength_input *= 1e-9  # Convert to meters
-trap_frequency=2 * const.pi*UnitConversions.wavelength_to_freq(trap_wavelength_input)
+trap_frequency=2 * const.pi*wavelength_to_freq(trap_wavelength_input)
 
 # Power
 odt_beam_power_input = st.sidebar.number_input('Laser Power, W', value=power_slider)
@@ -49,6 +50,15 @@ def getApproxPolarizability(traplight_frequency,atom_transition_freq,atom_transi
     denIm=1j*(traplight_frequency**3/atom_transition_freq**2)*atom_transition_linewidth
     alpha=num/(denRe-denIm)
     return alpha
+
+def joule_to_hz(energy_in_joule):
+    return energy_in_joule / (2 * const.pi * const.hbar)
+
+def hz_to_joule(energy_in_hz):
+    return energy_in_hz * (2 * const.pi * const.hbar)
+
+def wavelength_to_freq(wavelength_in_m):
+    return (const.c)/wavelength_in_m 
     
 # Calculate U_0 (Trap depth)
 def get_U0(trap_freq,power, waist):
