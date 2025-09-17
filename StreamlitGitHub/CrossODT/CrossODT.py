@@ -37,7 +37,7 @@ trap_frequency=2 * const.pi*wavelength_to_freq(trap_wavelength_input)
 
 # Power
 odt_beam_power_input = st.sidebar.number_input('Laser Power, mW', value=power_slider)
-odt_beam_power_input* = 1e-3 #convert power to W
+odt_beam_power_input *= 1e-3 #convert power to W
 
 # Waist
 odt_beam_waist_input = st.sidebar.number_input('Beam Waist, μm', value=waist_slider)
