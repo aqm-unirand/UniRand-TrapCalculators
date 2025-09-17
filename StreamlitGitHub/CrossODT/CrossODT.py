@@ -4,11 +4,11 @@ import numpy as np
 import math
 import scipy.constants as const
 from arc import *
-from Alkali import Lithium6
+# from Alkali import Lithium6
 import UnitConversions
 
 # Constants
-atom = Lithium6()
+# atom = Lithium6()
 m_li6 = 6.0151228874 * 1.66e-27  # Mass of Lithium-6 in kg
 transition_linewidth = 2 * const.pi*5.8724e6 #Li-6 D2 transition linewidth
 transition_wavelength = 670.977338e-9 #Li-6 transition wavelength in m
