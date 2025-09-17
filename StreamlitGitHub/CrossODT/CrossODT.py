@@ -65,8 +65,8 @@ def get_U0(trap_freq,power, waist):
     alpha=getApproxPolarizability(trap_freq,transition_frequency,transition_linewidth)
     total_power_in_cross = 2*power #Total power in the cross is twice the IPG output power
     trapIntensity=2*total_power_in_cross/(const.pi*(waist**2)) #Max intensity on optical axis is 2 times power/mode area for Gaussian beam
-    Udip=((-1/(2*const.epsilon_0*const.c))*alpha.real*trapIntensity)
-    return trapIntensity #Udip #Depth in J
+    Udip=alpha.real*trapIntensity #((-1/(2*const.epsilon_0*const.c))*alpha.real*trapIntensity)
+    return Udip*1e30 #Udip #Depth in J
 
 # Calculate Cross ODT trap frequencies (omega_x, omega_y, omega_z)
 def get_cross_freqs(trap_freq,power,waist,cross_angle):
