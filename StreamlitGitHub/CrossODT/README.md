@@ -1,0 +1,1 @@
+Use this calculator to estimate the trap characteristics of a cross trap at a given angle in the X-Y plane. Made for Li-6.
