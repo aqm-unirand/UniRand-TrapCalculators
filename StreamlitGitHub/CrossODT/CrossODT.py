@@ -27,7 +27,7 @@ st.title('UniRand Cross ODT Parameters for Li6')
 # Sidebar input fields
 st.sidebar.header('Input Parameters')
 
-power_slider = st.sidebar.slider('IPG Output Power, W', min_value=0.0001, max_value=200, value=1, step=0.1)
+power_slider = st.sidebar.slider('IPG Output Power, mW', min_value=0.1, max_value=100000, value=1000, step=0.1)
 waist_slider = st.sidebar.slider('Beam Waist, μm', min_value=1, max_value=200.0, value=55, step=0.5)
 
 # Wavelength
@@ -36,7 +36,8 @@ trap_wavelength_input *= 1e-9  # Convert to meters
 trap_frequency=2 * const.pi*wavelength_to_freq(trap_wavelength_input)
 
 # Power
-odt_beam_power_input = st.sidebar.number_input('Laser Power, W', value=power_slider)
+odt_beam_power_input = st.sidebar.number_input('Laser Power, mW', value=power_slider)
+odt_beam_power_input* = 1e-3 #convert power to W
 
 # Waist
 odt_beam_waist_input = st.sidebar.number_input('Beam Waist, μm', value=waist_slider)
