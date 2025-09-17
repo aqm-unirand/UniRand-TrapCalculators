@@ -104,19 +104,19 @@ alpha = getApproxPolarizability(trap_frequency,transition_frequency,transition_l
 on = st.sidebar.toggle("Switch to temperature")
 
 # Create a dataframe for displaying results
-# if not on:
-#     data = pd.DataFrame({
-#         "Parameter": ["Trap depth", "D2 detuning", "Trap frequency: radial", "Trap frequency: axial", "Trap frequency: ratio"],
-#         "Symbol": ["U₀", "ΔE", "ω_r / 2π", "ω_z / 2π", "ω_r / ω_z"],
-#         "Value": [U0 / h * 1e-6, deltaE * 1e-6, omega_r / (2 * math.pi) * 1e-3, omega_z / (2 * math.pi) * 1e-3, omega_r / omega_z],
-#         "Units": ["MHz", "MHz", "kHz", "kHz", ""]
-#     })
-# else:
-data = pd.DataFrame({
-    "Parameter": ["Trap depth", "Trap frequency: x", "Trap frequency: y", "Trap frequency: vertical", "Fermi Temperature (spherical)", "Fermi Velocity (spherical)", "Fermi Wavelength (spherical)"],
-    "Symbol": ["U₀", "ω_x / 2π", "ω_y / 2π", "ω_z / 2π", "T_f", "v_F", "Lambda_F"],
-    "Value": [U0 / const.k * 1e6, wx, wy, wv, Tf * 1e6, vf*100, wf*1e9],
-    "Units": ["μK", "Hz", "Hz", "Hz", "μK" ,  "cm/s", "nm"]
-})
+if not on:
+    data = pd.DataFrame({
+        "Parameter": ["Trap depth", "Trap frequency: x", "Trap frequency: y", "Trap frequency: vertical", "Fermi Temperature (spherical)", "Fermi Velocity (spherical)", "Fermi Wavelength (spherical)"],
+        "Symbol": ["U₀", "ω_x / 2π", "ω_y / 2π", "ω_z / 2π", "T_f", "v_F", "Lambda_F"],
+        "Value": [U0 / const.h * 1e-6, wx, wy, wv, Tf * 1e6, vf*100, wf*1e9],
+        "Units": ["MHz", "Hz", "Hz", "Hz", "μK" ,  "cm/s", "nm"]
+    })
+else:
+    data = pd.DataFrame({
+        "Parameter": ["Trap depth", "Trap frequency: x", "Trap frequency: y", "Trap frequency: vertical", "Fermi Temperature (spherical)", "Fermi Velocity (spherical)", "Fermi Wavelength (spherical)"],
+        "Symbol": ["U₀", "ω_x / 2π", "ω_y / 2π", "ω_z / 2π", "T_f", "v_F", "Lambda_F"],
+        "Value": [U0 / const.k * 1e6, wx, wy, wv, Tf * 1e6, vf*100, wf*1e9],
+        "Units": ["μK", "Hz", "Hz", "Hz", "μK" ,  "cm/s", "nm"]
+    })
 
 st.write(data)
