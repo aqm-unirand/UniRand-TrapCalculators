@@ -97,7 +97,9 @@ wx,wy,wv = get_cross_freqs(trap_wavelength_input, odt_beam_power_input, odt_beam
 
 #Calculate Fermi Characteristics Ef (fermi Energy), Tf (Fermi Temperature), vf (Fermi velocity)
 Ef,Tf,vf = get_Fermi_values(trap_wavelength_input, odt_beam_power_input, odt_beam_waist_input,cross_odt_angle_input,atom_number_input)
-# 
+
+alpha = getApproxPolarizability(trap_freq,transition_frequency,transition_linewidth)
+
 on = st.sidebar.toggle("Switch to temperature")
 
 # Create a dataframe for displaying results
@@ -112,7 +114,7 @@ on = st.sidebar.toggle("Switch to temperature")
 data = pd.DataFrame({
     "Parameter": ["Trap depth", "Trap frequency: x", "Trap frequency: y", "Trap frequency: vertical", "Fermi Temperature", "Fermi Velocity"],
     "Symbol": ["U₀", "ω_x / 2π", "ω_y / 2π", "ω_z / 2π", "T_f", "v_F*100"],
-    "Value": [U0 / const.k * 1e6, wx, wy, wv, Tf * 1e6, vf],
+    "Value": [U0 / const.k * 1e6, wx, wy, alpha.real, Tf * 1e6, vf],
     "Units": ["μK", "Hz", "Hz", "Hz", "μK" ,  "cm/s"]
 })
 
