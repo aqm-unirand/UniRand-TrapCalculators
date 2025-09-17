@@ -27,8 +27,8 @@ st.title('UniRand Cross ODT Parameters for Li6')
 # Sidebar input fields
 st.sidebar.header('Input Parameters')
 
-power_slider = st.sidebar.slider('IPG Output Power, mW', min_value=0.1, max_value=1000000.0, value=1000.0, step=0.1)
-waist_slider = st.sidebar.slider('Beam Waist, μm', min_value=1.0, max_value=200.0, value=55.0, step=0.5)
+power_slider = st.sidebar.slider('IPG Output Power, mW', min_value=0.1, max_value=5000.0, value=1000.0, step=0.1)
+waist_slider = st.sidebar.slider('Beam Waist, μm', min_value=1.0, max_value=200.0, value=67.0, step=0.5)
 
 # Wavelength
 trap_wavelength_input = st.sidebar.number_input('Wavelength, nm', value=1064)
@@ -112,9 +112,9 @@ on = st.sidebar.toggle("Switch to temperature")
 # else:
 data = pd.DataFrame({
     "Parameter": ["Trap depth", "Trap frequency: x", "Trap frequency: y", "Trap frequency: vertical", "Fermi Temperature", "Fermi Velocity"],
-    "Symbol": ["U₀", "ω_x / 2π", "ω_y / 2π", "ω_z / 2π", "T_f", "v_F"],
+    "Symbol": ["U₀", "ω_x / 2π", "ω_y / 2π", "ω_z / 2π", "T_f", "v_F*100"],
     "Value": [U0 / const.k * 1e6, wx, wy, wv, Tf * 1e6, vf],
-    "Units": ["μK", "Hz", "Hz", "Hz", "μK" ,  "m/s"]
+    "Units": ["μK", "Hz", "Hz", "Hz", "μK" ,  "cm/s"]
 })
 
 st.write(data)
