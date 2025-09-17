@@ -86,8 +86,8 @@ def get_Fermi_values(trap_freq,power,waist,cross_angle, atom_number):
     Ef = (const.h*((wx*wy*wz)**(1/3))*((3*atom_number)**(1/3)))
     Tf = Ef/const.k
     vf = np.sqrt(2*Ef/m_li6)
-    kf = np.sqrt(2*m_li6*Ef)/const.hbar
-    return Ef,Tf,vf,kf #Energy in J, Temperature in K, velocity in m/s, wavevector in 1/m
+    wf = const.h/np.sqrt(2*m_li6*Ef)
+    return Ef,Tf,vf,wf #Energy in J, Temperature in K, velocity in m/s, wavevector in 1/m
 
 
 # Calculate and display results
@@ -97,7 +97,7 @@ U0 = get_U0(trap_frequency, odt_beam_power_input, odt_beam_waist_input) # U0 in 
 wx,wy,wv = get_cross_freqs(trap_frequency, odt_beam_power_input, odt_beam_waist_input,cross_odt_angle_input)
 
 #Calculate Fermi Characteristics Ef (fermi Energy), Tf (Fermi Temperature), vf (Fermi velocity)
-Ef,Tf,vf, kf = get_Fermi_values(trap_frequency, odt_beam_power_input, odt_beam_waist_input,cross_odt_angle_input,atom_number_input)
+Ef,Tf,vf, wf = get_Fermi_values(trap_frequency, odt_beam_power_input, odt_beam_waist_input,cross_odt_angle_input,atom_number_input)
 
 alpha = getApproxPolarizability(trap_frequency,transition_frequency,transition_linewidth)*1e39
 
@@ -113,10 +113,10 @@ on = st.sidebar.toggle("Switch to temperature")
 #     })
 # else:
 data = pd.DataFrame({
-    "Parameter": ["Trap depth", "Trap frequency: x", "Trap frequency: y", "Trap frequency: vertical", "Fermi Temperature (spherical)", "Fermi Velocity (spherical)", "Fermi Wavevector (spherical)"],
-    "Symbol": ["U₀", "ω_x / 2π", "ω_y / 2π", "ω_z / 2π", "T_f", "v_F", "k_F"],
-    "Value": [U0 / const.k * 1e6, wx, wy, wv, Tf * 1e6, vf*100, kf],
-    "Units": ["μK", "Hz", "Hz", "Hz", "μK" ,  "cm/s", "1/m"]
+    "Parameter": ["Trap depth", "Trap frequency: x", "Trap frequency: y", "Trap frequency: vertical", "Fermi Temperature (spherical)", "Fermi Velocity (spherical)", "Fermi Wavelength (spherical)"],
+    "Symbol": ["U₀", "ω_x / 2π", "ω_y / 2π", "ω_z / 2π", "T_f", "v_F", "Lambda_F"],
+    "Value": [U0 / const.k * 1e6, wx, wy, wv, Tf * 1e6, vf*100, wf*1e-9],
+    "Units": ["μK", "Hz", "Hz", "Hz", "μK" ,  "cm/s", "nm"]
 })
 
 st.write(data)
