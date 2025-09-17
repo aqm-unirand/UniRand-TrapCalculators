@@ -6,6 +6,14 @@ import scipy.constants as const
 from arc import *
 
 
+def joule_to_hz(energy_in_joule):
+    return energy_in_joule / (2 * const.pi * const.hbar)
+
+def hz_to_joule(energy_in_hz):
+    return energy_in_hz * (2 * const.pi * const.hbar)
+
+def wavelength_to_freq(wavelength_in_m):
+    return (const.c)/wavelength_in_m 
 
 # Constants
 m_li6 = 6.0151228874 * 1.66e-27  # Mass of Lithium-6 in kg
@@ -51,14 +59,6 @@ def getApproxPolarizability(traplight_frequency,atom_transition_freq,atom_transi
     alpha=num/(denRe-denIm)
     return alpha
 
-def joule_to_hz(energy_in_joule):
-    return energy_in_joule / (2 * const.pi * const.hbar)
-
-def hz_to_joule(energy_in_hz):
-    return energy_in_hz * (2 * const.pi * const.hbar)
-
-def wavelength_to_freq(wavelength_in_m):
-    return (const.c)/wavelength_in_m 
     
 # Calculate U_0 (Trap depth)
 def get_U0(trap_freq,power, waist):
