@@ -66,7 +66,7 @@ def get_U0(trap_freq,power, waist):
     total_power_in_cross = 2*power #Total power in the cross is twice the IPG output power
     trapIntensity=2*total_power_in_cross/(const.pi*(waist**2)) #Max intensity on optical axis is 2 times power/mode area for Gaussian beam
     Udip=((-1/(2*const.epsilon_0*const.c))*alpha.real*trapIntensity)
-    return Udip #Depth in J
+    return trapIntensity #Udip #Depth in J
 
 # Calculate Cross ODT trap frequencies (omega_x, omega_y, omega_z)
 def get_cross_freqs(trap_freq,power,waist,cross_angle):
@@ -114,7 +114,7 @@ on = st.sidebar.toggle("Switch to temperature")
 data = pd.DataFrame({
     "Parameter": ["Trap depth", "Trap frequency: x", "Trap frequency: y", "Trap frequency: vertical", "Fermi Temperature", "Fermi Velocity"],
     "Symbol": ["U₀", "ω_x / 2π", "ω_y / 2π", "ω_z / 2π", "T_f", "v_F*100"],
-    "Value": [U0 / const.k * 1e6, wx, wy, alpha.real, Tf * 1e6, vf],
+    "Value": [U0 / const.k * 1e6, wx, wy, U0, Tf * 1e6, vf],
     "Units": ["μK", "Hz", "Hz", "Hz", "μK" ,  "cm/s"]
 })
 
