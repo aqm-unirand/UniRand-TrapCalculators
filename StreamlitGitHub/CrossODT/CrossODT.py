@@ -113,8 +113,8 @@ on = st.sidebar.toggle("Switch to temperature")
 # else:
 data = pd.DataFrame({
     "Parameter": ["Trap depth", "Trap frequency: x", "Trap frequency: y", "Trap frequency: vertical", "Fermi Temperature", "Fermi Velocity"],
-    "Symbol": ["U₀", "ω_x / 2π", "ω_y / 2π", "ω_z / 2π", "T_f", "v_F*100"],
-    "Value": [U0 / const.k * 1e6, wx, wy, wv, Tf * 1e6, vf],
+    "Symbol": ["U₀", "ω_x / 2π", "ω_y / 2π", "ω_z / 2π", "T_f", "v_F"],
+    "Value": [U0 / const.k * 1e6, wx, wy, wv, Tf * 1e6, vf*100],
     "Units": ["μK", "Hz", "Hz", "Hz", "μK" ,  "cm/s"]
 })
 
