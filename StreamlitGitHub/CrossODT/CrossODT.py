@@ -15,8 +15,6 @@ def hz_to_joule(energy_in_hz):
 def wavelength_to_freq(wavelength_in_m):
     return (const.c)/wavelength_in_m 
 
-import UnitConversions
-
 # Constants
 m_li6 = 6.0151228874 * 1.66e-27  # Mass of Lithium-6 in kg
 transition_linewidth = 2 * const.pi*5.8724e6 #Li-6 D2 transition linewidth
