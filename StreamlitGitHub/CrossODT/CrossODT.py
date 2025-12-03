@@ -4,6 +4,7 @@ import numpy as np
 import math
 import scipy.constants as const
 from arc import *
+<<<<<<< HEAD
 
 
 def joule_to_hz(energy_in_joule):
@@ -14,6 +15,9 @@ def hz_to_joule(energy_in_hz):
 
 def wavelength_to_freq(wavelength_in_m):
     return (const.c)/wavelength_in_m 
+=======
+import UnitConversions
+>>>>>>> e693a82 (FermiQP app addition)
 
 # Constants
 m_li6 = 6.0151228874 * 1.66e-27  # Mass of Lithium-6 in kg
